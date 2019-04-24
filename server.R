@@ -41,6 +41,19 @@ if (!require("robustbase"))
 if (!require("SeleMix"))
   install.packages("SeleMix")
 
+library(DT) 
+library(proxy)
+library(dbscan)
+library(mlbench)
+library(randomForest)
+library(IsolationForest)
+library(autoencoder)
+library(fclust)
+library(DMwR)
+library(HighDimOut)
+library(robustbase)
+library(SeleMix)
+
 shinyServer(function(input, output, session) {
   
   selectedData <- reactiveValues()
