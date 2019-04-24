@@ -54,7 +54,13 @@ shinyUI(fluidPage(theme = shinytheme("spacelab"),
                   tags$head(includeScript("googleanalytics.js")),
   navbarPage("2D Outlier Analysis",tabPanel("App",
   sidebarPanel(
-    selectInput('Model',label="Model",choices=list("Hierarchical Clustering"=12,
+         h3("Please choose your input file:"),
+      wellPanel(
+        fileInput(inputId = "File", label = "Select input file", accept = ".txt"),
+        print("The file should contain a header and clustering labels (having the name \"label\" (txt tabulation format)).")
+      ),
+      wellPanel(
+        selectInput('Model',label="Model",choices=list("Hierarchical Clustering"=12,
                                   "Mahalanobis Distance"=2,
                                   "EM - can be slow to converge"=17,
                                   "Kmeans Euclidean Distance" =1, 
@@ -67,15 +73,17 @@ shinyUI(fluidPage(theme = shinytheme("spacelab"),
                                   "FBOD"=14,"SOD"=15,
                                   "Autoencoder"=8
                                   ),selected = 1),
-    selectInput('sample',label="Sample",choices=list("Random" =1, 
+      selectInput('sample',label="Sample",choices=list("Random" =1, 
                                   "Corners"=2,"Doughnut"=3,"Smiley"=4,"Spiral"=5,"Eyes"=6,"Butterfly"=7,"Axis-Parallel Subspace"=8,"StarsCYG"=9),selected = 1),
-    numericInput('clusters', 'Cluster count/Neighbors', 3,
+      numericInput('clusters', 'Cluster count/Neighbors', 3,
                  min = 1, max = 9),
-    sliderInput("outlierper", "Outlier %:", 
+      sliderInput("outlierper", "Outlier %:", 
                 min = 85, max = 99, value = 90, step= 1), 
-    actionButton("button", "Update Sample Data"),
-    p(),
-    actionButton("scalebutton", "Scale Data")
+      actionButton("button", "Update Sample Data"),
+      p(),
+      actionButton("scalebutton", "Scale Data")
+    )
+
   ),
   mainPanel(
     plotOutput('plot1',click = "plot_click",
