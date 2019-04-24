@@ -1,4 +1,55 @@
+#Increase size of upload files to 500 Mo
+options(shiny.maxRequestSize=500*1024^2)
+options(warn=-1)
+
+if (!require("shiny"))
+  install.packages("shiny")
+
+if (!require("DT"))
+  install.packages("DT")
+
+if (!require("proxy"))
+  install.packages("proxy")
+
+if (!require("dbscan"))
+  install.packages("dbscan")
+
+if (!require("mlbench"))
+  install.packages("mlbench")
+
+if (!require("randomForest"))
+  install.packages("randomForest")
+
+if(!require(devtools)){
+  install.packages("devtools")
+}
+
+if (!require("IsolationForest"))
+  devtools::install_github("yanyachen/IsolationForest")
+
+if (!require("autoencoder"))
+  install.packages("autoencoder")
+
+if (!require("fclust"))
+  install.packages("fclust")
+
+if (!require("DMwR"))
+  install.packages("DMwR")
+
+if (!require("HighDimOut"))
+  install.packages("HighDimOut")
+
+if (!require("robustbase"))
+  install.packages("robustbase")
+
+if (!require("SeleMix"))
+  install.packages("SeleMix")
+
+if (!require("shinythemes"))
+  install.packages("shinythemes")
+
 library(shinythemes)
+
 shinyUI(fluidPage(theme = shinytheme("spacelab"),
                   tags$head(includeScript("googleanalytics.js")),
   navbarPage("2D Outlier Analysis",tabPanel("App",
