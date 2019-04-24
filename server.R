@@ -66,7 +66,7 @@ shinyServer(function(input, output, session) {
    observeEvent(input$button, {
      n <- 50
             print("OK1")
-     if (input$File$name!=NULL){
+     if (input$File){
        print("OK")
         savedname=file_path_sans_ext(input$File$name)
               print("OK2")
