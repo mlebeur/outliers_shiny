@@ -1,18 +1,45 @@
-library(DT) 
-library(proxy)
-library(dbscan)
-library(mlbench)
-library(randomForest)
-library(IsolationForest)
-library(autoencoder)
-library(fclust)
-library(DMwR)
-library(HighDimOut)
-library(robustbase)
-library(SeleMix)
-#library(e1071)
-#library(reshape)
+#Increase size of upload files to 500 Mo
+options(shiny.maxRequestSize=500*1024^2)
+options(warn=-1)
 
+if (!require("shiny"))
+  install.packages("shiny")
+
+if (!require("DT"))
+  install.packages("DT")
+
+if (!require("proxy"))
+  install.packages("proxy")
+
+if (!require("dbscan"))
+  install.packages("dbscan")
+
+if (!require("mlbench"))
+  install.packages("mlbench")
+
+if (!require("randomForest"))
+  install.packages("randomForest")
+
+if (!require("IsolationForest"))
+  install.packages("IsolationForest")
+
+if (!require("autoencoder"))
+  install.packages("autoencoder")
+
+if (!require("fclust"))
+  install.packages("fclust")
+
+if (!require("DMwR"))
+  install.packages("DMwR")
+
+if (!require("HighDimOut"))
+  install.packages("HighDimOut")
+
+if (!require("robustbase"))
+  install.packages("robustbase")
+
+if (!require("SeleMix"))
+  install.packages("SeleMix")
 
 shinyServer(function(input, output, session) {
   
