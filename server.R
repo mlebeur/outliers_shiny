@@ -66,27 +66,34 @@ shinyServer(function(input, output, session) {
   counter <- 1
    observeEvent(input$button, {
      n <- 50
-     if (input$sample==1) {y <- data.frame(cbind(x=(1:10 + rnorm(30,sd=15))),y=(1:10 + rnorm(30,sd=2)))}
-     if (input$sample==2) {y<- as.data.frame((matrix(c(sample(1:10,8),sample(30:40,9), sample(80:90,9)), ncol=2, byrow = F)))}
-     if (input$sample==3) {theta = runif(50, 0,1)*2*pi
-                           x1=c(2*sin(theta[1:30])+rnorm(30,0,0.05),sin(theta[31:50])+rnorm(20,0, 0.01))
-                           x2=c(2*cos(theta[1:30])+rnorm(30, 0, 0.05),cos(theta[31:50])+rnorm(20, 0, 0.01))
-                           x1 = (x1-mean(x1))/sd(x1)
-                           x2 = (x2-mean(x2))/sd(x2)
-                           y <- as.data.frame(cbind(x1,x2))}
-     if (input$sample==4) {shapes <- mlbench.smiley(n=60, sd1=0.1,sd2=.05)
-                          y <- as.data.frame(cbind(shapes$x[,1],shapes$x[,2]))}
-     if (input$sample==5) {shapes <- mlbench.spirals(n=60, cycles = 1,sd=.02)
-                          y <- as.data.frame(cbind(shapes$x[,1],shapes$x[,2]))}
-     if (input$sample==6) {x1 <- cbind(rnorm(6, -0.8, .06), rnorm(6, 1, .06))
-                           x2 <- cbind(rnorm(12, 0.8, .16), rnorm(12, 1, .16))
-                           y <- rbind(x1,x2)
-                           y <- as.data.frame(y)}
-     if (input$sample==7) {data("butterfly")
-                            y <- as.data.frame(butterfly)}
-     if (input$sample==8) { y <- subset(TestData, select = c(x,y))}
-     if (input$sample==9) {data("starsCYG")
-       y <- as.data.frame(starsCYG)}
+     if (input$Files$name!=NULL){
+        savedname=file_path_sans_ext(input$Files$name)
+        myfile=read.table(savedname, header=TRUE)
+        y = myfile[,2]
+        x = myfile[,1]
+     } else{
+        if (input$sample==1) {y <- data.frame(cbind(x=(1:10 + rnorm(30,sd=15))),y=(1:10 + rnorm(30,sd=2)))}
+        if (input$sample==2) {y<- as.data.frame((matrix(c(sample(1:10,8),sample(30:40,9), sample(80:90,9)), ncol=2, byrow = F)))}
+        if (input$sample==3) {theta = runif(50, 0,1)*2*pi
+                             x1=c(2*sin(theta[1:30])+rnorm(30,0,0.05),sin(theta[31:50])+rnorm(20,0, 0.01))
+                             x2=c(2*cos(theta[1:30])+rnorm(30, 0, 0.05),cos(theta[31:50])+rnorm(20, 0, 0.01))
+                             x1 = (x1-mean(x1))/sd(x1)
+                             x2 = (x2-mean(x2))/sd(x2)
+                             y <- as.data.frame(cbind(x1,x2))}
+        if (input$sample==4) {shapes <- mlbench.smiley(n=60, sd1=0.1,sd2=.05)
+                            y <- as.data.frame(cbind(shapes$x[,1],shapes$x[,2]))}
+        if (input$sample==5) {shapes <- mlbench.spirals(n=60, cycles = 1,sd=.02)
+                            y <- as.data.frame(cbind(shapes$x[,1],shapes$x[,2]))}
+        if (input$sample==6) {x1 <- cbind(rnorm(6, -0.8, .06), rnorm(6, 1, .06))
+                             x2 <- cbind(rnorm(12, 0.8, .16), rnorm(12, 1, .16))
+                             y <- rbind(x1,x2)
+                             y <- as.data.frame(y)}
+        if (input$sample==7) {data("butterfly")
+                              y <- as.data.frame(butterfly)}
+        if (input$sample==8) { y <- subset(TestData, select = c(x,y))}
+        if (input$sample==9) {data("starsCYG")
+          y <- as.data.frame(starsCYG)
+      }
       ## Add synt.data from isolation forest 
       colnames(y)<-c("x","y")
       selectedData$df<-y})  
