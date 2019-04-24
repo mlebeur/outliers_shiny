@@ -65,12 +65,16 @@ shinyServer(function(input, output, session) {
   counter <- 1
    observeEvent(input$button, {
      n <- 50
-     if (input$Files$name!=NULL){
-        savedname=file_path_sans_ext(input$Files$name)
+            print("OK1")
+     if (input$File$name!=NULL){
+       print("OK")
+        savedname=file_path_sans_ext(input$File$name)
+              print("OK2")
         myfile=read.table(savedname, header=TRUE)
         y = myfile[,2]
         x = myfile[,1]
      } else{
+              print("OK5454")
         if (input$sample==1) {y <- data.frame(cbind(x=(1:10 + rnorm(30,sd=15))),y=(1:10 + rnorm(30,sd=2)))}
         if (input$sample==2) {y<- as.data.frame((matrix(c(sample(1:10,8),sample(30:40,9), sample(80:90,9)), ncol=2, byrow = F)))}
         if (input$sample==3) {theta = runif(50, 0,1)*2*pi
