@@ -20,8 +20,12 @@ if (!require("mlbench"))
 if (!require("randomForest"))
   install.packages("randomForest")
 
+if(!require(devtools)){
+  install.packages("devtools")
+}
+
 if (!require("IsolationForest"))
-  install.packages("IsolationForest")
+  devtools::install_github("yanyachen/IsolationForest")
 
 if (!require("autoencoder"))
   install.packages("autoencoder")
