@@ -20,9 +20,8 @@ if (!require("mlbench"))
 if (!require("randomForest"))
   install.packages("randomForest")
 
-if(!require(devtools)){
+if (!require(devtools))
   install.packages("devtools")
-}
 
 if (!require("IsolationForest"))
   devtools::install_github("yanyachen/IsolationForest")
@@ -92,7 +91,7 @@ shinyServer(function(input, output, session) {
                               y <- as.data.frame(butterfly)}
         if (input$sample==8) { y <- subset(TestData, select = c(x,y))}
         if (input$sample==9) {data("starsCYG")
-          y <- as.data.frame(starsCYG)
+          y <- as.data.frame(starsCYG)}
       }
       ## Add synt.data from isolation forest 
       colnames(y)<-c("x","y")
