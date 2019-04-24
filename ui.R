@@ -20,10 +20,9 @@ if (!require("mlbench"))
 if (!require("randomForest"))
   install.packages("randomForest")
 
-if(!require(devtools)){
+if (!require(devtools))
   install.packages("devtools")
-}
-
+  
 if (!require("IsolationForest"))
   devtools::install_github("yanyachen/IsolationForest")
 
